@@ -1,0 +1,4 @@
+independent:
+<div class="text-wrapper" id="gigya-share-btns-2_gig_containerParent" itemprop="articleBody">...</div>
+
+the guardian:
