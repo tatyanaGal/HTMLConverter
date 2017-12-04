@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import codecs
 import os, sys, string
 
+
 # ALLGEMEIN 
 # Die gecrawlten csv Datei sind folgendermassen aufgebaut:
 # 1. Zeile: "irgendeine Zahl 1","url 1","html-Seite 1"
@@ -29,7 +30,7 @@ while decrement:
 
 
 ## Neue Loesung:
-with open('./website_downloads_2017-11-02.csv', newline='', encoding='utf-8') as inf, open('./output.csv', 'w') as outf:
+with open('./website_downloads_2017-11-12.csv', newline='', encoding='utf-8') as inf, open('./output.csv', 'w') as outf:
   reader = csv.reader(inf)
   writer = csv.writer(outf, delimiter=',', quoting=csv.QUOTE_ALL)
   
@@ -42,12 +43,14 @@ with open('./website_downloads_2017-11-02.csv', newline='', encoding='utf-8') as
 
     #BeautifulSoup-Teil
     html=line[2].encode('utf-8').decode('unicode_escape') #decode/encode um Sonderzeichen auszublenden, z.B. \n oder \t... KP aber wie das genau funktioniert
+    #doc=BeautifulSoup(html, "lxml")
     doc=BeautifulSoup(html, "lxml")
 
     # Hier wird die if-Abfrage fuer verschiedenen Websiten durchgefuehrt
     ### Independent:
     if line[1].startswith("http://www.independent.co.uk"):
       table = doc.find_all("p")
+      #table = doc.find("div", _class="text-wrapper", _id="gigya-share-btns-2_gig_containerParent").findALL("p")
       final_list = []
       liste=[line[0], line[1]]
       
