@@ -31,7 +31,7 @@ while decrement:
 warnings.filterwarnings("ignore", category=UserWarning, module="bs4")
 
 ## HTML-Converter:
-with open('./website_downloads_2017-11-09.csv', newline='', encoding='utf-8') as inputFile, open('./output.csv', 'w') as outputFile:
+with open('./website_downloads_2017-11-08.csv', newline='', encoding='utf-8') as inputFile, open('./output.csv', 'w') as outputFile:
   reader = csv.reader(inputFile)
   writer = csv.writer(outputFile, delimiter=',', quoting=csv.QUOTE_ALL)
   
@@ -612,43 +612,26 @@ with open('./website_downloads_2017-11-09.csv', newline='', encoding='utf-8') as
    
 
 
-    # ### MSNBC US
-    # elif line[1].startswith("http://www.msnbc.com/"):
-    #   if htmlText.find(name="div", attrs={"class": "l-container"}):
-    #     wholeText = htmlText.find(name="div", attrs={"class": "l-container"}).find_all(name="p")
-    #     extractedText = []
+    ### MSNBC US
+    elif line[1].startswith("http://www.msnbc.com/"):
+      if htmlText.find(name="section", attrs={"itemprop": "articleBody"}):
+        wholeText = htmlText.find(name="section", attrs={"itemprop": "articleBody"}).find_all(name="p")
+        extractedText = []
       
-    #     # Jeder gefundene Tag wird einzeln abgelesen
-    #     for zeile in wholeText:
-    #       tagText = zeile.get_text() 
+        # Jeder gefundene Tag wird einzeln abgelesen
+        for zeile in wholeText:
+          tagText = zeile.get_text() 
 
-    #       # hier werden leere Zeilen, tabs und returns aus dem Tag geloescht
-    #       tagText = tagText.replace("\r", "").replace("\n", "")
+          # hier werden leere Zeilen, tabs und returns aus dem Tag geloescht
+          tagText = tagText.replace("\r", "").replace("\n", "")
         
-    #       # hier wird jeder Tag zu einer Liste hinzugefuegt
-    #       extractedText.append(tagText)
+          # hier wird jeder Tag zu einer Liste hinzugefuegt
+          extractedText.append(tagText)
 
-    #     artikel=" ".join(extractedText) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
+        artikel=" ".join(extractedText) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
      
-    #     writer.writerow([line[0],line[1],artikel]) # schreibt alles in einer Zeile von der output-Datei
+        writer.writerow([line[0],line[1],artikel]) # schreibt alles in einer Zeile von der output-Datei
 
-    #   table = htmlText.find_all("p")
-    #   final_list = []
-    #   liste=[line[0], line[1]]
-      
-    #   # Jeder gefundene Tag wird einzeln abgelesen
-    #   for zeile in table:
-    #     strr = zeile.get_text() 
-
-    #     # hier werden leere Zeilen, tabs und returns aus dem Tag geloescht
-    #     strr = strr.replace("\r", "").replace("\n", "")
-        
-    #     # hier wird jeder Tag zu einer Liste hinzugefuegt
-    #     final_list.append(strr)
-
-    #   strin=" ".join(final_list) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
-     
-    #   writer.writerow([liste[0],liste[1],strin]) # schreibt alles in einer Zeile von der output-Datei
 
 
 
@@ -677,8 +660,8 @@ with open('./website_downloads_2017-11-09.csv', newline='', encoding='utf-8') as
     
     ### ABC News US + World + Politics + International
     elif line[1].startswith("http://abcnews.go.com"):
-      if htmlText.find(name="div", attrs={"class": "container"}):
-        wholeText = htmlText.find(name="div", attrs={"class": "container"}).find_all(name="p")
+      if htmlText.find_all(name="p", attrs={"itemprop": "articleBody"}):
+        wholeText = htmlText.find_all(name="p", attrs={"itemprop": "articleBody"})
         extractedText = []
       
         # Jeder gefundene Tag wird einzeln abgelesen
