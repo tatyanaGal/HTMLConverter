@@ -1,10 +1,12 @@
 import csv
-from bs4 import BeautifulSoup
+import bs4
 import codecs
 import os, sys, string, warnings
 from itertools import islice
 import sys
 import time
+import sys
+
 
 # ALLGEMEIN 
 # Die gecrawlten csv Datei sind folgendermassen aufgebaut:
@@ -34,13 +36,13 @@ warnings.filterwarnings("ignore", category=UserWarning, module="bs4")
 ## HTML-Converter:
 def text_extract(file_to_extract):
 
-  with open(file_to_extract, newline='', encoding='utf-8') as inputFile, open("./extracted/extracted_" + sys.argv[1] + ".csv", 'w') as outputFile:
+  with open(file_to_extract, newline='', encoding='utf-8') as inputFile, open("./extracted/extracted_" + sys.argv[2] + ".csv", 'w') as outputFile:
     reader = csv.reader(inputFile)
     writer = csv.writer(outputFile, delimiter=',', quoting=csv.QUOTE_ALL)
     
     # Lese bestimmte Anzahl von Zeilen ab:
-    for line in islice(reader, 50):
-    #for line in reader: # csv wird zeilenweise abgelesen - line = Zeile 1 usw. 
+    #for line in islice(reader, 200):
+    for line in reader: # csv wird zeilenweise abgelesen - line = Zeile 1 usw. 
       #print("----Line checked----")
     
       #  # Leere Zeilen in csv werden uebersprungen
@@ -48,9 +50,8 @@ def text_extract(file_to_extract):
       #   continue
 
       #BeautifulSoup-Teil
-      html=line[3].encode("utf-8").decode(encoding='unicode_escape', errors="strict") #decode/encode um Sonderzeichen auszublenden, z.B. \n oder \t... 
-      #html=line[3].encode('utf-8').decode('unicode_escape') #decode/encode um Sonderzeichen auszublenden, z.B. \n oder \t... 
-      htmlText=BeautifulSoup(html, "lxml")
+      html=line[3].encode('utf-8').decode('unicode_escape') #decode/encode um Sonderzeichen auszublenden, z.B. \n oder \t... 
+      htmlText=bs4.BeautifulSoup(html, "lxml")
 
       ########################## Hier wird die if-Abfrage fuer verschiedenen Webseiten durchgefuehrt
       
@@ -528,7 +529,7 @@ def text_extract(file_to_extract):
 
           artikel=" ".join(extractedText) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
        
-          writer.writerow([line[0],line[2],artikel]) # schreibt alles in einer Zeile von der output-Datei
+          writer.writerow([line[0],line[2],"US",artikel]) # schreibt alles in einer Zeile von der output-Datei
 
       
       ### CNN US + World
@@ -709,33 +710,15 @@ def text_extract(file_to_extract):
        
           writer.writerow([line[0],line[2],"US",artikel]) # schreibt alles in einer Zeile von der output-Datei
 
-    #   table = htmlText.find_all("p")
-    #   final_list = []
-    #   liste=[line[0], line[1]]
-      
-    #   # Jeder gefundene Tag wird einzeln abgelesen
-    #   for zeile in table:
-    #     strr = zeile.get_text() 
-
-    #     # hier werden leere Zeilen, tabs und returns aus dem Tag geloescht
-    #     strr = strr.replace("\r", "").replace("\n", "")
-        
-    #     # hier wird jeder Tag zu einer Liste hinzugefuegt
-    #     final_list.append(strr)
-
-    #   strin=" ".join(final_list) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
-     
-    #   writer.writerow([liste[0],liste[1],strin]) # schreibt alles in einer Zeile von der output-Datei
-
 # schliesst die Dateien
   inputFile.close()
   outputFile.close()
 
 def main():
-  if len(sys.argv) == 2:
+  if len(sys.argv) == 3:
     text_extract(sys.argv[1])
   else:
-    print("Wrong parameters: python3 Converter.py website_downloads_YYYY-MM-DD.csv")
+    print("Wrong parameters: python3 Converter.py /path/to/website_downloads_YYYY-MM-DD.csv website_downloads_YYYY-MM-DD")
     return
 
 if __name__ == "__main__":
