@@ -5,7 +5,6 @@ import os, sys, string, warnings
 from itertools import islice
 import sys
 import time
-import sys
 
 
 # ALLGEMEIN 
@@ -36,7 +35,7 @@ warnings.filterwarnings("ignore", category=UserWarning, module="bs4")
 ## HTML-Converter:
 def text_extract(file_to_extract):
 
-  with open(file_to_extract, newline='', encoding='utf-8') as inputFile, open("./extracted/extracted_" + sys.argv[2] + ".csv", 'w') as outputFile:
+  with open(file_to_extract, newline='', encoding="utf-8") as inputFile, open("./extracted/extracted_" + sys.argv[2] + ".csv", 'w') as outputFile:
     reader = csv.reader(inputFile)
     writer = csv.writer(outputFile, delimiter=',', quoting=csv.QUOTE_ALL)
     
@@ -50,7 +49,8 @@ def text_extract(file_to_extract):
       #   continue
 
       #BeautifulSoup-Teil
-      html=line[3].encode('utf-8').decode('unicode_escape') #decode/encode um Sonderzeichen auszublenden, z.B. \n oder \t... 
+
+      html=line[3].encode(encoding="utf-8").decode(encoding='unicode_escape', errors="strict") #decode/encode um Sonderzeichen auszublenden, z.B. \n oder \t... 
       htmlText=bs4.BeautifulSoup(html, "lxml")
 
       ########################## Hier wird die if-Abfrage fuer verschiedenen Webseiten durchgefuehrt
