@@ -50,7 +50,7 @@ def text_extract(file_to_extract):
 
       #BeautifulSoup-Teil
 
-      html=line[3].encode(encoding="utf-8").decode(encoding='unicode_escape', errors="strict") #decode/encode um Sonderzeichen auszublenden, z.B. \n oder \t... 
+      html=line[3].encode(encoding="utf-8").decode(encoding='unicode_escape', errors="restrict") #decode/encode um Sonderzeichen auszublenden, z.B. \n oder \t... 
       htmlText=bs4.BeautifulSoup(html, "lxml")
 
       ########################## Hier wird die if-Abfrage fuer verschiedenen Webseiten durchgefuehrt
@@ -78,7 +78,7 @@ def text_extract(file_to_extract):
 
           artikel=" ".join(extractedText) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
        
-          writer.writerow([line[0],line[2],"AU",artikel]) # schreibt alles in einer Zeile von der output-Datei
+          writer.writerow([line[0],line[2],"AU","The Advertiser",artikel]) # schreibt alles in einer Zeile von der output-Datei
 
 
 
@@ -102,7 +102,7 @@ def text_extract(file_to_extract):
 
           artikel=" ".join(extractedText) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
        
-          writer.writerow([line[0],line[2],"AU",artikel]) # schreibt alles in einer Zeile von der output-Datei
+          writer.writerow([line[0],line[2],"AU","The Daily Telegraph AU",artikel]) # schreibt alles in einer Zeile von der output-Datei
 
 
 
@@ -128,7 +128,7 @@ def text_extract(file_to_extract):
 
           artikel=" ".join(extractedText) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
        
-          writer.writerow([line[0],line[2],"AU",artikel]) # schreibt alles in einer Zeile von der output-Datei
+          writer.writerow([line[0],line[2],"AU","Herald Sun",artikel]) # schreibt alles in einer Zeile von der output-Datei
 
 
 
@@ -153,7 +153,7 @@ def text_extract(file_to_extract):
 
           artikel=" ".join(extractedText) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
        
-          writer.writerow([line[0],line[2],"AU",artikel]) # schreibt alles in einer Zeile von der output-Datei
+          writer.writerow([line[0],line[2],"AU","The Age",artikel]) # schreibt alles in einer Zeile von der output-Datei
 
 
       ### Canberra Times Australia FUNK NICHT 
@@ -177,11 +177,11 @@ def text_extract(file_to_extract):
 
           artikel=" ".join(extractedText) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
        
-          writer.writerow([line[0],line[2],"AU",artikel]) # schreibt alles in einer Zeile von der output-Datei
+          writer.writerow([line[0],line[2],"AU","Canberra Times",artikel]) # schreibt alles in einer Zeile von der output-Datei
 
 
 
-      ### Mercurry Australia
+      ### Mercury Australia
       elif line[1].startswith("http://www.themercury.com.au"):
 
         #if htmlText.find(name="div", attrs={"class": "tg-tlc-storybody cf"}):
@@ -202,7 +202,7 @@ def text_extract(file_to_extract):
 
           artikel=" ".join(extractedText) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
        
-          writer.writerow([line[0],line[2],"AU",artikel]) # schreibt alles in einer Zeile von der output-Datei
+          writer.writerow([line[0],line[2],"AU","The Mercury",artikel]) # schreibt alles in einer Zeile von der output-Datei
 
 
       ### ABC Australia
@@ -223,7 +223,7 @@ def text_extract(file_to_extract):
 
           artikel=" ".join(extractedText) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
        
-          writer.writerow([line[0],line[2],"AU",artikel]) # schreibt alles in einer Zeile von der output-Datei
+          writer.writerow([line[0],line[2],"AU","ABC Australia",artikel]) # schreibt alles in einer Zeile von der output-Datei
 
 
 
@@ -245,7 +245,7 @@ def text_extract(file_to_extract):
 
           artikel=" ".join(extractedText) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
        
-          writer.writerow([line[0],line[2],"AU",artikel]) # schreibt alles in einer Zeile von der output-Datei
+          writer.writerow([line[0],line[2],"AU","The west australian",artikel]) # schreibt alles in einer Zeile von der output-Datei
 
 
 
@@ -267,7 +267,7 @@ def text_extract(file_to_extract):
 
           artikel=" ".join(extractedText) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
        
-          writer.writerow([line[0],line[2],"AU",artikel]) # schreibt alles in einer Zeile von der output-Datei
+          writer.writerow([line[0],line[2],"AU","News Australia",artikel]) # schreibt alles in einer Zeile von der output-Datei
 
 
       ################################################################ Germany News #######################################################
@@ -290,7 +290,7 @@ def text_extract(file_to_extract):
 
           artikel=" ".join(extractedText) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
        
-          writer.writerow([line[0],line[2],"DE",artikel]) # schreibt alles in einer Zeile von der output-Datei
+          writer.writerow([line[0],line[2],"DE","Spiegel Online",artikel]) # schreibt alles in einer Zeile von der output-Datei
 
 
      ############################################################ UK News ##################################################################
@@ -313,7 +313,7 @@ def text_extract(file_to_extract):
 
           artikel=" ".join(extractedText) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
        
-          writer.writerow([line[0],line[2],"UK",artikel]) # schreibt alles in einer Zeile von der output-Datei
+          writer.writerow([line[0],line[2],"UK","The Independent",artikel]) # schreibt alles in einer Zeile von der output-Datei
 
 
 
@@ -335,7 +335,7 @@ def text_extract(file_to_extract):
 
           artikel=" ".join(extractedText) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
        
-          writer.writerow([line[0],line[2],"UK",artikel]) # schreibt alles in einer Zeile von der output-Datei
+          writer.writerow([line[0],line[2],"UK","The Guardian",artikel]) # schreibt alles in einer Zeile von der output-Datei
     
 
 
@@ -357,7 +357,7 @@ def text_extract(file_to_extract):
 
           artikel=" ".join(extractedText) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
        
-          writer.writerow([line[0],line[2],"UK",artikel]) # schreibt alles in einer Zeile von der output-Datei
+          writer.writerow([line[0],line[2],"UK","BBC News",artikel]) # schreibt alles in einer Zeile von der output-Datei
     
 
       ### Daily Express UK
@@ -378,7 +378,7 @@ def text_extract(file_to_extract):
 
           artikel=" ".join(extractedText) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
        
-          writer.writerow([line[0],line[2],"UK",artikel]) # schreibt alles in einer Zeile von der output-Datei
+          writer.writerow([line[0],line[2],"UK","Daily Express",artikel]) # schreibt alles in einer Zeile von der output-Datei
 
 
       ### Daily Mail UK
@@ -399,7 +399,7 @@ def text_extract(file_to_extract):
 
           artikel=" ".join(extractedText) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
        
-          writer.writerow([line[0],line[2],"UK",artikel]) # schreibt alles in einer Zeile von der output-Datei
+          writer.writerow([line[0],line[2],"UK","Daily Mail",artikel]) # schreibt alles in einer Zeile von der output-Datei
 
 
       ### Evening Standard UK
@@ -420,10 +420,10 @@ def text_extract(file_to_extract):
 
           artikel=" ".join(extractedText) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
        
-          writer.writerow([line[0],line[2],"UK",artikel]) # schreibt alles in einer Zeile von der output-Datei
+          writer.writerow([line[0],line[2],"UK","Evening Standard",artikel]) # schreibt alles in einer Zeile von der output-Datei
     
 
-      ### Financial Time UK
+      ### Financial Times UK
       elif line[1].startswith("https://www.ft.com"):
         if htmlText.find(name="section", attrs={"itemprop": "articleBody"}):
           wholeText = htmlText.find(name="section", attrs={"itemprop": "articleBody"}).find_all(name="p")
@@ -441,7 +441,7 @@ def text_extract(file_to_extract):
 
           artikel=" ".join(extractedText) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
        
-          writer.writerow([line[0],line[2],"UK",artikel]) # schreibt alles in einer Zeile von der output-Datei
+          writer.writerow([line[0],line[2],"UK","Financial Times",artikel]) # schreibt alles in einer Zeile von der output-Datei
 
 
 
@@ -464,7 +464,7 @@ def text_extract(file_to_extract):
 
           artikel=" ".join(extractedText) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
        
-          writer.writerow([line[0],line[2],"US",artikel]) # schreibt alles in einer Zeile von der output-Datei
+          writer.writerow([line[0],line[2],"US","BBC US",artikel]) # schreibt alles in einer Zeile von der output-Datei
 
 
       # ### NPR US
@@ -485,7 +485,7 @@ def text_extract(file_to_extract):
 
           artikel=" ".join(extractedText) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
        
-          writer.writerow([line[0],line[2],"US",artikel]) # schreibt alles in einer Zeile von der output-Datei
+          writer.writerow([line[0],line[2],"US","NPR",artikel]) # schreibt alles in einer Zeile von der output-Datei
 
 
 
@@ -507,7 +507,7 @@ def text_extract(file_to_extract):
 
           artikel=" ".join(extractedText) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
        
-          writer.writerow([line[0],line[2],"US",artikel]) # schreibt alles in einer Zeile von der output-Datei
+          writer.writerow([line[0],line[2],"US","Reuters",artikel]) # schreibt alles in einer Zeile von der output-Datei
 
      
 
@@ -529,13 +529,15 @@ def text_extract(file_to_extract):
 
           artikel=" ".join(extractedText) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
        
-          writer.writerow([line[0],line[2],"US",artikel]) # schreibt alles in einer Zeile von der output-Datei
+          writer.writerow([line[0],line[2],"US","New York Times",artikel]) # schreibt alles in einer Zeile von der output-Datei
 
       
       ### CNN US + World
       elif line[1].startswith("http://rss.cnn.com"):
-        if htmlText.find(name="div", attrs={"class": "l-container"}):
-          wholeText = htmlText.find(name="div", attrs={"class": "l-container"}).find_all(name="p")
+        #if htmlText.find(name="div", attrs={"class": "l-container"}):
+          #wholeText = htmlText.find(name="div", attrs={"class": "l-container"}).find_all(name="p")
+        if htmlText.find(name="div", attrs={"itemprop": "articleBody"}):
+          wholeText = htmlText.find(name="div", attrs={"itemprop": "articleBody"}).find_all(name="p")
           extractedText = []
         
           # Jeder gefundene Tag wird einzeln abgelesen
@@ -550,7 +552,7 @@ def text_extract(file_to_extract):
 
           artikel=" ".join(extractedText) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
        
-          writer.writerow([line[0],line[2],"US",artikel]) # schreibt alles in einer Zeile von der output-Datei
+          writer.writerow([line[0],line[2],"US","CNN",artikel]) # schreibt alles in einer Zeile von der output-Datei
 
     
 
@@ -572,7 +574,7 @@ def text_extract(file_to_extract):
 
           artikel=" ".join(extractedText) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
        
-          writer.writerow([line[0],line[2],"US",artikel]) # schreibt alles in einer Zeile von der output-Datei
+          writer.writerow([line[0],line[2],"US","Associated Press",artikel]) # schreibt alles in einer Zeile von der output-Datei
 
       
 
@@ -594,7 +596,7 @@ def text_extract(file_to_extract):
 
           artikel=" ".join(extractedText) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
        
-          writer.writerow([line[0],line[2],"US",artikel]) # schreibt alles in einer Zeile von der output-Datei
+          writer.writerow([line[0],line[2],"US","Washington Post",artikel]) # schreibt alles in einer Zeile von der output-Datei
 
       
 
@@ -616,7 +618,7 @@ def text_extract(file_to_extract):
 
           artikel=" ".join(extractedText) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
        
-          writer.writerow([line[0],line[2],"US",artikel]) # schreibt alles in einer Zeile von der output-Datei
+          writer.writerow([line[0],line[2],"US","Fox News",artikel]) # schreibt alles in einer Zeile von der output-Datei
 
      
 
@@ -639,15 +641,17 @@ def text_extract(file_to_extract):
 
           artikel=" ".join(extractedText) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
        
-          writer.writerow([line[0],line[2],"US",artikel]) # schreibt alles in einer Zeile von der output-Datei
+          writer.writerow([line[0],line[2],"US","MSNBC",artikel]) # schreibt alles in einer Zeile von der output-Datei
 
 
 
 
       ### CBS US + World + Politics 
       elif line[1].startswith("https://www.cbsnews.com"):
-        if htmlText.find(name="div", attrs={"class": "content-primary article-page default"}):
-          wholeText = htmlText.find(name="div", attrs={"class": "content-primary article-page default"}).find_all(name="p")
+        #if htmlText.find(name="div", attrs={"class": "content-primary article-page default"}):
+          #wholeText = htmlText.find(name="div", attrs={"class": "content-primary article-page default"}).find_all(name="p")
+        if htmlText.find(name="article", attrs={"id": "article"}):
+          wholeText = htmlText.find(name="article", attrs={"id": "article"}).find_all(name="p")
           extractedText = []
         
           # Jeder gefundene Tag wird einzeln abgelesen
@@ -662,7 +666,7 @@ def text_extract(file_to_extract):
 
           artikel=" ".join(extractedText) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
        
-          writer.writerow([line[0],line[2],"US",artikel]) # schreibt alles in einer Zeile von der output-Datei
+          writer.writerow([line[0],line[2],"US","CBS",artikel]) # schreibt alles in einer Zeile von der output-Datei
 
 
 
@@ -685,7 +689,7 @@ def text_extract(file_to_extract):
 
           artikel=" ".join(extractedText) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
        
-          writer.writerow([line[0],line[2],"US",artikel]) # schreibt alles in einer Zeile von der output-Datei
+          writer.writerow([line[0],line[2],"US","ABC News",artikel]) # schreibt alles in einer Zeile von der output-Datei
 
     
 
@@ -708,7 +712,7 @@ def text_extract(file_to_extract):
 
           artikel=" ".join(extractedText) # joint alle Elemente aus der Liste zu einem grossen Sting (Separated mit " ")
        
-          writer.writerow([line[0],line[2],"US",artikel]) # schreibt alles in einer Zeile von der output-Datei
+          writer.writerow([line[0],line[2],"US","Wallstreet Journal",artikel]) # schreibt alles in einer Zeile von der output-Datei
 
 # schliesst die Dateien
   inputFile.close()
